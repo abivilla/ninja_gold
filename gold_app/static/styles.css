@@ -1,0 +1,15 @@
+.earn{
+    color: rgb(114, 248, 101);
+}
+.lost{
+    color: rgb(248, 41, 41);
+}
+#activities{
+    height: 12rem;
+    overflow-y: scroll;
+    border: solid;
+}
+
+body{
+    background-color: rgb(158, 158, 157);
+}

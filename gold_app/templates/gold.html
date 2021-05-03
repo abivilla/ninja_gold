@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/styles.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <h3>Your Gold: <display>{{request.session.money}}</display> </h3>
+        <div class="container row mx-auto">
+            <div class="card mr-3">
+                <form class="card-body" action="/process_money" method="post">
+                    {% csrf_token %}
+                    <h3>Farm</h3>
+                    <input type="hidden" name="location" value="farm">
+                    <h6>(earns 10-20 golds)</h6>
+                    <button type="submit">Find Gold!</button>
+                </form>
+            </div>
+            <div class="card ml-3 mr-3">
+                <form class="card-body" action="/process_money" method="post">
+                    {% csrf_token %}
+                    <h3>Cave</h3>
+                    <input type="hidden" name="location" value="cave">
+                    <h6>(earns 5-10 golds)</h6>
+                    <button type="submit">Find Gold!</button>
+                </form>
+            </div>
+            <div class="card ml-3 mr-3">
+                <form class="card-body" action="/process_money" method="post">
+                    {% csrf_token %}
+                    <h3>House</h3>
+                    <input type="hidden" name="location" value="house">
+                    <h6>(earns 2-5 golds)</h6>
+                    <button type="submit">Find Gold!</button>
+                </form>
+            </div>
+            <div class="card ml-3 mr-3">
+                <form class="card-body" action="/process_money" method="post">
+                    {% csrf_token %}
+                    <h3>Casino</h3>
+                    <input type="hidden" name="location" value="casino">
+                    <h6>(earns/takes 0-50 golds)</h6>
+                    <button type="submit">Find Gold!</button>
+                </form>
+            </div>
+        </div>
+        <h3>Activities:</h3>
+        <div id="activities">
+        {% for activity in request.session.activities %}    
+            <p class="{{activity.earn}}">{{activity.outcome}}</p>
+        {% endfor %}
+          
+        </div>
+        <form action="/reset" method="post">
+            {% csrf_token %}
+            <button type="submit">Reset</button>
+        </form>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
